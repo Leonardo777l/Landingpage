@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Leo Vidal | Cinematic Weddings</title>
+    <meta name="description"
+        content="Cinematic Weddings por Leo Vidal. Momentos contados como nadie. Más de 350 documentales cinematográficos en México.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Montserrat:wght@300;400;500&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./film-grain.css" />
+</head>
+
+<body>
+    <div class="film-grain"></div>
+
+    <!-- Navigation (Minimal) -->
+    <nav class="navbar">
+        <div class="logo">
+            <img src="/images/logo.png" alt="Leo Vidal" class="nav-logo">
+        </div>
+        <ul class="nav-links">
+            <li><a href="#about">Sobre mí</a></li>
+            <li><a href="#gallery">Historias</a></li>
+            <li><a href="#packages">Inversión</a></li>
+            <li><a href="#contact" class="btn-nav">Reservar</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg">
+            <!-- Background Video -->
+            <video autoplay muted loop playsinline class="hero-video" id="hero-video">
+                <source src="/videos/hero-video.mp4" type="video/mp4">
+            </video>
+            <div class="overlay"></div>
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-title fade-in-up">Leo Vidal</h1>
+            <p class="hero-subtitle fade-in-up delay-1">Cinematic Weddings</p>
+            <div class="hero-divider fade-in-up delay-2"></div>
+            <p class="hero-tagline fade-in-up delay-2">Momentos contados como nadie</p>
+        </div>
+        <div class="scroll-indicator">
+            <span>Scroll</span>
+            <div class="line"></div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-image reveal-on-scroll">
+                    <img src="/images/leo-portrait-updated.jpg" alt="Leo Vidal">
+                </div>
+                <div class="about-text reveal-on-scroll">
+                    <h3>El Narrador Visual</h3>
+                    <p>Soy <strong>Leo Vidal</strong>, un apasionado del cine y la narrativa visual. Mi
+                        búsqueda de la excelencia me llevó a <strong>Madrid</strong>, donde perfeccioné mi arte con un
+                        <strong>Master en Edición Audiovisual</strong>.
+                    </p>
+                    <p>Con la experiencia de haber documentado <strong>más de 300 bodas</strong>, he tenido el honor de
+                        capturar historias de amor en Michoacán, Guanajuato, Guadalajara, Tijuana, Irapuato, Guerrero y
+                        Cancún.</p>
+                    <p>No solo capturo imágenes; construyo legados. Cada boda es un documental único donde la emoción y
+                        la estética se encuentran para crear una obra de arte atemporal.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section (Split) -->
+    <section id="gallery" class="gallery-section">
+        <div class="section-header">
+            <h2>Galería</h2>
+            <p>Instantes eternos</p>
+        </div>
+
+        <!-- Save The Date Subsection -->
+        <div class="gallery-subsection">
+            <h3 class="subsection-title">Save the Date</h3>
+            <div class="masonry-grid">
+                <div class="masonry-item reveal-on-scroll">
+                    <img src="/images/Save the date/save-date-1.jpg" alt="Save the Date Moment 1">
+                </div>
+                <div class="masonry-item reveal-on-scroll delay-1">
+                    <img src="/images/Save the date/save-date-2.jpg" alt="Save the Date Moment 2">
+                </div>
+                <div class="masonry-item reveal-on-scroll delay-2">
+                    <img src="/images/Save the date/save-date-3.jpg" alt="Save the Date Moment 3">
+                </div>
+                <div class="masonry-item reveal-on-scroll">
+                    <img src="/images/Save the date/save-date-4.jpg" alt="Save the Date Moment 4">
+                </div>
+                <div class="masonry-item reveal-on-scroll delay-1">
+                    <img src="/images/Save the date/save-date-5.jpg" alt="Save the Date Moment 5">
+                </div>
+            </div>
+        </div>
+
+        <!-- Wedding Day Subsection -->
+        <div class="gallery-subsection">
+            <h3 class="subsection-title">Wedding Day</h3>
+            <div class="masonry-grid">
+                <div class="masonry-item reveal-on-scroll">
+                    <img src="/images/Wedding day/wedding-1.jpg" alt="Wedding Day Moment 1">
+                </div>
+                <div class="masonry-item reveal-on-scroll delay-1">
+                    <img src="/images/Wedding day/wedding-2.jpg" alt="Wedding Day Moment 2">
+                </div>
+                <div class="masonry-item reveal-on-scroll delay-2">
+                    <img src="/images/Wedding day/wedding-3.jpg" alt="Wedding Day Moment 3">
+                </div>
+                <div class="masonry-item reveal-on-scroll">
+                    <img src="/images/Wedding day/wedding-4.jpg" alt="Wedding Day Moment 4">
+                </div>
+                <div class="masonry-item reveal-on-scroll delay-1">
+                    <img src="/images/Wedding day/wedding-5.jpg" alt="Wedding Day Moment 5">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Section (Direct Upload) -->
+    <section id="video-feed" class="video-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Cinematografía</h2>
+                <p>La película de tu vida</p>
+            </div>
+            <div class="video-wrapper reveal-on-scroll">
+                <!-- Main Player -->
+                <video controls poster="/images/img-0.png" class="cinematic-player" id="main-video">
+                    <source src="/videos/Reel.mp4" type="video/mp4">
+                    Tu navegador no soporta videos HTML5.
+                </video>
+                <div class="video-caption">
+                    <p id="video-title">Cinematic Wedding Highlights</p>
+                </div>
+
+                <!-- Playlist Selector -->
+                <div class="video-playlist">
+                    <div class="playlist-item active" data-src="/videos/Reel.mp4" data-title="Yare & Rafa">
+                        <span class="play-icon">▶</span>
+                        <span class="track-name">Yare & Rafa</span>
+                    </div>
+                    <div class="playlist-item" data-src="/videos/Reel 2.mp4" data-title="Sol & Emilio">
+                        <span class="play-icon">▶</span>
+                        <span class="track-name">Sol & Emilio</span>
+                    </div>
+                    <div class="playlist-item" data-src="/videos/Reel 3.mp4" data-title="Larissa & Guillermo">
+                        <span class="play-icon">▶</span>
+                        <span class="track-name">Larissa & Guillermo</span>
+                    </div>
+                    <div class="playlist-item" data-src="/videos/Reel 4.mp4" data-title="Fanny & Pablo">
+                        <span class="play-icon">▶</span>
+                        <span class="track-name">Fanny & Pablo</span>
+                    </div>
+                    <div class="playlist-item" data-src="/videos/Reel 5.mov" data-title="Margarita & Christian">
+                        <span class="play-icon">▶</span>
+                        <span class="track-name">Margarita & Christian</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="packages" class="pricing-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Colecciones</h2>
+                <p>Invierte en tus recuerdos</p>
+            </div>
+
+            <div class="pricing-grid">
+                <!-- Package 1 -->
+                <div class="price-card reveal-on-scroll">
+                    <div class="card-header">
+                        <h3>Esencial Digital</h3>
+                        <div class="price">$23,900 <span class="currency">MXN</span></div>
+                    </div>
+                    <div class="features-categorized">
+                        <div class="pkg-category">Cobertura</div>
+                        <ul>
+                            <li>Preparativos</li>
+                            <li>Misa</li>
+                            <li>Sesión Privada</li>
+                            <li>Fiesta</li>
+                            <li><strong>Total de 8 horas</strong></li>
+                        </ul>
+
+                        <div class="pkg-category">Foto</div>
+                        <ul>
+                            <li>Sesión Save the date</li>
+                            <li>350 Fotos editadas y retocadas</li>
+                        </ul>
+
+                        <div class="pkg-category">Video</div>
+                        <ul>
+                            <li>Video documental del evento</li>
+                            <li>Cinematic reel Save the date</li>
+                        </ul>
+
+                        <div class="pkg-category">Entrega</div>
+                        <ul>
+                            <li>Galeria Digital de fotos en alta calidad</li>
+                            <li>Video Respladado en la nube</li>
+                        </ul>
+                    </div>
+                    <a href="https://wa.link/tmjnft" target="_blank" class="btn-cta">Agendar una cita</a>
+                </div>
+
+                <!-- Package 2 -->
+                <div class="price-card reveal-on-scroll delay-1">
+                    <div class="card-header">
+                        <h3>Premium Wedding</h3>
+                        <div class="price">$31,500 <span class="currency">MXN</span></div>
+                    </div>
+                    <div class="features-categorized">
+                        <div class="pkg-category">Cobertura</div>
+                        <ul>
+                            <li>Preparativos</li>
+                            <li>First Look</li>
+                            <li>Misa</li>
+                            <li>Sesión Privada</li>
+                            <li>Fiesta</li>
+                            <li><strong>Total de 10 horas</strong></li>
+                        </ul>
+
+                        <div class="pkg-category">Foto</div>
+                        <ul>
+                            <li>Sesión Save the date</li>
+                            <li>600+ Fotos editadas y retocadas</li>
+                        </ul>
+
+                        <div class="pkg-category">Video</div>
+                        <ul>
+                            <li>Video documental del evento</li>
+                            <li>Cinematic reel Save the date</li>
+                            <li>Cinematic wedding trailer</li>
+                        </ul>
+
+                        <div class="pkg-category">Entrega</div>
+                        <ul>
+                            <li>Ampliación Grande Save the date</li>
+                            <li>Galeria Digital de fotos en alta calidad</li>
+                            <li>Video Respladado en la nube</li>
+                            <li>Estuche premium de madera grabado</li>
+                            <li>Photobook impreso de alta calidad</li>
+                            <li>Memoria Usb</li>
+                        </ul>
+                    </div>
+                    <a href="https://wa.link/tmjnft" target="_blank" class="btn-cta">Agendar una cita</a>
+                </div>
+
+                <!-- Package 3 (Highlights - BEST SELLER) -->
+                <div class="price-card recommended reveal-on-scroll delay-2">
+                    <div class="badge">Más Vendido</div>
+                    <div class="card-header">
+                        <h3>Luxury Wedding</h3>
+                        <div class="special-discount-label">Descuento Especial</div>
+                        <div class="old-price">$42,500 MXN</div>
+                        <div class="price">$34,900 <span class="currency">MXN</span></div>
+                        <div class="countdown-timer">
+                            Oferta termina en: <span id="timer">23:59:59</span>
+                        </div>
+                    </div>
+                    <div class="features-categorized">
+                        <div class="pkg-category">Cobertura</div>
+                        <ul>
+                            <li>Preparativos</li>
+                            <li>First Look</li>
+                            <li>Misa</li>
+                            <li>Sesión Privada</li>
+                            <li>Fiesta</li>
+                            <li><strong>Total de 12 horas</strong></li>
+                        </ul>
+
+                        <div class="pkg-category">Foto</div>
+                        <ul>
+                            <li>Sesión Save the date</li>
+                            <li>Fotos Ilimitadas editadas y retocadas</li>
+                        </ul>
+
+                        <div class="pkg-category">Video</div>
+                        <ul>
+                            <li>Video documental del evento</li>
+                            <li>Cinematic reel Save the date</li>
+                            <li>Cinematic wedding trailer</li>
+                            <li>Grabado a dos cámaras</li>
+                        </ul>
+
+                        <div class="pkg-category">Entrega</div>
+                        <ul>
+                            <li>Ampliación Grande Save the date</li>
+                            <li>Ampliación Grande Wedding day</li>
+                            <li>Galeria Digital de fotos en alta calidad</li>
+                            <li>Video Respladado en la nube</li>
+                            <li>Estuche premium de madera grabado</li>
+                            <li>Photobook impreso de alta calidad</li>
+                            <li>Memoria Usb</li>
+                        </ul>
+                    </div>
+                    <a href="https://wa.link/tmjnft" target="_blank" class="btn-cta btn-primary">Agendar una cita</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scroll Trigger Discount Section (Hidden initially or sticky at bottom) -->
+    <div id="sticky-offer" class="sticky-offer hidden">
+        <div class="offer-content">
+            <div class="offer-text">
+                <span class="offer-title">OFERTA ESPECIAL</span>
+                <p>Reserva hoy y obtén un <span class="highlight-gold">10% DE DESCUENTO</span></p>
+            </div>
+            <a href="https://wa.link/tmjnft" target="_blank" class="btn-gold">Agendar una cita</a>
+            <button id="close-offer" class="close-btn">&times;</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Leo Vidal | Cinematic Weddings. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script type="module" src="/main.js"></script>
+</body>
+
+</html>
