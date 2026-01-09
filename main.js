@@ -80,8 +80,33 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // 6. Video Playlist Logic
-  // 6. Video Playlist Logic (Removed - Now using Instagram Embeds)
-  // Logic removed as part of update to use simple Instagram embeds instead of custom player.
+  const videoPlayer = document.getElementById('main-video');
+  const videoTitle = document.getElementById('video-title');
+  const playlistItems = document.querySelectorAll('.playlist-item');
+
+  if (videoPlayer && playlistItems.length > 0) {
+    playlistItems.forEach(item => {
+      item.addEventListener('click', () => {
+        // Update Active State
+        playlistItems.forEach(i => i.classList.remove('active'));
+        item.classList.add('active');
+
+        // Swap Source
+        const newSrc = item.dataset.src;
+        const newTitle = item.dataset.title;
+
+        if (newSrc) {
+          videoPlayer.src = newSrc;
+          videoPlayer.load(); // Important to load new source
+          videoPlayer.play().catch(e => console.log("Auto-play prevented:", e));
+        }
+
+        if (newTitle && videoTitle) {
+          videoTitle.textContent = newTitle;
+        }
+      });
+    });
+  }
 
   // 7. Urgency Countdown Timer
   const timerDisplay = document.getElementById('timer');

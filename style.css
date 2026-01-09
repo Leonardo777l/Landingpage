@@ -451,51 +451,111 @@ h2 {
     filter: brightness(1.05);
 }
 
-/* Instagram Section */
-.instagram-section {
+/* Video Section */
+.video-section {
     padding: var(--spacing-section) 0;
     background-color: #111;
-    /* Deep cinematic black */
-    color: var(--color-light);
+    /* True cinematic black */
+    color: var(--color-white);
 }
 
-.instagram-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 2rem;
-    justify-content: center;
-    padding: 0 1rem;
+.video-section .section-header h2 {
+    color: var(--color-white);
+    font-weight: 300;
+    letter-spacing: 0.1em;
 }
 
-.instagram-item {
+/* Video Player Styles */
+.video-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    text-align: center;
+}
+
+.cinematic-player {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    outline: none;
+    background-color: #000;
+}
+
+.video-caption {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.video-caption strong {
+    color: var(--color-gold);
+}
+
+/* Video Playlist - Scene Selection */
+.video-playlist {
     display: flex;
     justify-content: center;
-    background: #000;
-    border-radius: 4px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    transition: transform 0.4s ease;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-top: 4rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 2rem;
 }
 
-.instagram-item:hover {
+.playlist-item {
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    transition: var(--transition-smooth);
+    min-width: auto;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.playlist-item:hover {
+    background: transparent;
+    border-color: transparent;
     transform: translateY(-5px);
-    box-shadow: 0 15px 40px rgba(192, 160, 98, 0.1);
-    /* Subtle gold glow */
+    color: var(--color-gold);
 }
 
-/* Force Instagram embeds to be centered and contained */
-.instagram-media {
-    min-width: 320px !important;
-    width: 100% !important;
-    margin: 0 auto !important;
-    border-radius: 4px !important;
+.playlist-item.active {
+    background: transparent;
+    border-color: transparent;
+    color: var(--color-white);
 }
 
-@media (max-width: 768px) {
-    .instagram-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
+.playlist-item .play-icon {
+    font-size: 1.5rem;
+    opacity: 0.5;
+    margin-bottom: 0.5rem;
+    border: 1px solid currentColor;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.5s ease;
+}
+
+.playlist-item:hover .play-icon,
+.playlist-item.active .play-icon {
+    opacity: 1;
+    border-color: var(--color-gold);
+    color: var(--color-gold);
+}
+
+.playlist-item .track-name {
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    font-weight: 400;
+    text-transform: uppercase;
 }
 
 /* Pricing Section - Minimal Luxury */

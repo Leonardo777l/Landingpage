@@ -102,8 +102,4 @@ typings/
 
 # Vite dist
 dist/
-
-# Videos
-public/videos/
-!public/videos/hero-video.mp4
 public/videos/
