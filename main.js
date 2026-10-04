@@ -69,4 +69,49 @@ document.addEventListener('DOMContentLoaded', () => {
       showBar(false);
     });
   }
+
+  // 5. Manifiesto: las palabras se iluminan conforme avanza el scroll
+  const manifesto = document.querySelector('[data-words]');
+  const calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (manifesto && !calm) {
+    const words = manifesto.textContent.trim().split(/\s+/);
+    manifesto.textContent = '';
+    words.forEach((word, i) => {
+      const span = document.createElement('span');
+      span.textContent = word;
+      manifesto.append(span, i < words.length - 1 ? ' ' : '');
+    });
+    manifesto.classList.add('js-words');
+    const spans = manifesto.querySelectorAll('span');
+
+    const light = () => {
+      const rect = manifesto.getBoundingClientRect();
+      const vh = window.innerHeight;
+      // Empieza cuando el texto entra por abajo y termina cuando queda centrado en pantalla
+      const progress = (vh * 0.9 - rect.top) / (vh * 0.55 + rect.height * 0.5);
+      const lit = Math.round(Math.min(1, Math.max(0, progress)) * spans.length);
+      spans.forEach((s, i) => s.classList.toggle('is-lit', i < lit));
+    };
+    window.addEventListener('scroll', light, { passive: true });
+    window.addEventListener('resize', light);
+    light();
+  }
+
+  // 6. Carruseles de la galería
+  document.querySelectorAll('[data-carousel]').forEach(carousel => {
+    const track = carousel.querySelector('.track');
+    const buttons = carousel.querySelectorAll('[data-dir]');
+    const sync = () => {
+      const max = track.scrollWidth - track.clientWidth - 2;
+      buttons.forEach(b => {
+        b.disabled = b.dataset.dir === '-1' ? track.scrollLeft <= 2 : track.scrollLeft >= max;
+      });
+    };
+    buttons.forEach(b => b.addEventListener('click', () => {
+      track.scrollBy({ left: Number(b.dataset.dir) * track.clientWidth * 0.8, behavior: calm ? 'auto' : 'smooth' });
+    }));
+    track.addEventListener('scroll', sync, { passive: true });
+    window.addEventListener('resize', sync);
+    sync();
+  });
 });
