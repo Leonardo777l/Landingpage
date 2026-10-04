@@ -1,7 +1,8 @@
 import { FECHAS_OCUPADAS } from './fechas-ocupadas.js';
 
-// Enlace de WhatsApp de los botones del revisor de disponibilidad
-const WHATSAPP_URL = 'https://wa.link/tmjnft';
+// WhatsApp de Leo (52 = México). Los botones abren el chat con un mensaje ya escrito.
+const WHATSAPP_NUMBER = '524521276339';
+const waLink = text => `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -146,7 +147,25 @@ document.addEventListener('DOMContentLoaded', () => {
     const ocupadas = new Set(FECHAS_OCUPADAS);
 
     dateInput.min = iso(today);
-    $('avail-wa').href = WHATSAPP_URL;
+
+    // Los botones de WhatsApp llevan la fecha, la ciudad y la colección que eligió
+    const updateLinks = (value, city) => {
+      const cuando = ` Me caso el ${fmt(parse(value), true)}${city !== 'otra' ? ` en ${city}` : ''}.`;
+      document.querySelectorAll('a[data-wa]').forEach(a => {
+        const card = a.closest('.card');
+        let text;
+        if (a.id === 'avail-wa') {
+          text = ocupadas.has(value)
+            ? `Hola Leo.${cuando} Vi en tu página que ya tienes apartada esa fecha, ¿podemos platicar?`
+            : `Hola Leo.${cuando} Vi en tu página que tienes libre la fecha y me gustaría apartarla.`;
+        } else if (card) {
+          text = `Hola Leo.${cuando} Me interesa la colección ${card.querySelector('h3').textContent.trim()}.`;
+        } else {
+          text = `Hola Leo, vi tu página y me gustaría platicar de mi boda.${cuando}`;
+        }
+        a.href = waLink(text);
+      });
+    };
     prices.classList.add('is-locked');
 
     const unlock = animate => {
@@ -166,6 +185,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ? `Todavía no tengo boda ese día${donde}. Aquí abajo están las colecciones; cuando quieras, escríbeme y lo apartamos.`
         : 'Ese día ya voy a estar en otra boda. Si tienen otra fecha en mente, revísenla aquí, o escríbeme y vemos qué se puede hacer.';
       $('avail-wa').textContent = libre ? 'Apartar mi fecha por WhatsApp' : 'Escribirme por WhatsApp';
+      updateLinks(value, city);
       form.hidden = true;
       status.hidden = true;
       result.hidden = false;
