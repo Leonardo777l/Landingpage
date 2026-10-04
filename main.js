@@ -1,3 +1,8 @@
+import { FECHAS_OCUPADAS } from './fechas-ocupadas.js';
+
+// Enlace de WhatsApp de los botones del revisor de disponibilidad
+const WHATSAPP_URL = 'https://wa.link/tmjnft';
+
 document.addEventListener('DOMContentLoaded', () => {
 
   // 1. Fondo de la navegación al hacer scroll
@@ -114,4 +119,129 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('resize', sync);
     sync();
   });
+
+  // 7. Revisor de disponibilidad: primero la fecha, luego las colecciones
+  const form = document.getElementById('avail-form');
+  const prices = document.getElementById('prices');
+  if (form && prices) {
+    const $ = id => document.getElementById(id);
+    const dateInput = $('avail-date');
+    const cityInput = $('avail-city');
+    const errorEl = $('avail-error');
+    const status = $('avail-status');
+    const line = $('avail-line');
+    const bar = $('avail-bar');
+    const log = $('avail-log');
+    const result = $('avail-result');
+    const KEY = 'lv-fecha';
+
+    const pad = n => String(n).padStart(2, '0');
+    const iso = d => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+    const parse = s => { const [y, m, d] = s.split('-').map(Number); return new Date(y, m - 1, d); };
+    const fmt = (d, year) => d.toLocaleDateString('es-MX', {
+      weekday: 'long', day: 'numeric', month: 'long', ...(year ? { year: 'numeric' } : {})
+    }).replace(',', '');
+    const wait = ms => new Promise(r => setTimeout(r, ms));
+    const today = parse(iso(new Date()));
+    const ocupadas = new Set(FECHAS_OCUPADAS);
+
+    dateInput.min = iso(today);
+    $('avail-wa').href = WHATSAPP_URL;
+    prices.classList.add('is-locked');
+
+    const unlock = animate => {
+      prices.classList.remove('is-locked');
+      if (animate) prices.classList.add('is-revealed');
+    };
+
+    const showResult = (value, city) => {
+      const date = parse(value);
+      const libre = !ocupadas.has(value);
+      const donde = city === 'otra' ? '' : ` en ${city}`;
+      $('avail-kicker').textContent = libre ? 'Buenas noticias' : 'Qué pena';
+      $('avail-title').textContent = libre
+        ? `El ${fmt(date, true)} está libre.`
+        : `El ${fmt(date, true)} ya lo tengo apartado.`;
+      $('avail-text').textContent = libre
+        ? `Todavía no tengo boda ese día${donde}. Aquí abajo están las colecciones; cuando quieras, escríbeme y lo apartamos.`
+        : 'Ese día ya voy a estar en otra boda. Si tienen otra fecha en mente, revísenla aquí, o escríbeme y vemos qué se puede hacer.';
+      $('avail-wa').textContent = libre ? 'Apartar mi fecha por WhatsApp' : 'Escribirme por WhatsApp';
+      form.hidden = true;
+      status.hidden = true;
+      result.hidden = false;
+    };
+
+    form.addEventListener('submit', async event => {
+      event.preventDefault();
+      const value = dateInput.value;
+      const city = cityInput.value;
+      if (!value || !city) {
+        errorEl.textContent = 'Elige el día y la ciudad para poder revisar.';
+        errorEl.hidden = false;
+        return;
+      }
+      if (value < dateInput.min) {
+        errorEl.textContent = 'Esa fecha ya pasó. Elige una que esté por venir.';
+        errorEl.hidden = false;
+        return;
+      }
+      errorEl.hidden = true;
+
+      const date = parse(value);
+      const total = calm ? 1200 : 5000;
+      const extras = ['Revisando fechas cercanas…', 'Revisando los fines de semana de ese mes…', 'Buscando bodas ya apartadas…']
+        .sort(() => Math.random() - 0.5).slice(0, 2);
+      const lines = ['Revisando calendario…', ...extras, `Confirmando el ${fmt(date)}…`];
+
+      // Fechas realmente apartadas alrededor de la que eligió (máximo tres)
+      const cercanas = FECHAS_OCUPADAS.filter(f => f !== value).map(parse)
+        .filter(d => d >= today && Math.abs(d - date) <= 45 * 864e5)
+        .sort((a, b) => Math.abs(a - date) - Math.abs(b - date)).slice(0, 3)
+        .sort((a, b) => a - b);
+
+      form.hidden = true;
+      result.hidden = true;
+      status.hidden = false;
+      log.textContent = '';
+      form.closest('.avail').scrollIntoView({ block: 'center', behavior: calm ? 'auto' : 'smooth' });
+      bar.style.transitionDuration = '0ms';
+      bar.style.width = '0';
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        bar.style.transitionDuration = `${total}ms`;
+        bar.style.width = '100%';
+      }));
+
+      for (let i = 0; i < lines.length; i++) {
+        line.textContent = lines[i];
+        if (i > 0 && cercanas[i - 1]) {
+          const chip = document.createElement('li');
+          chip.textContent = `${fmt(cercanas[i - 1])}, apartado`;
+          log.append(chip);
+        }
+        await wait(total / lines.length);
+      }
+
+      showResult(value, city);
+      unlock(true);
+      $('avail-title').focus({ preventScroll: true });
+      try { sessionStorage.setItem(KEY, JSON.stringify({ value, city })); } catch { /* sin almacenamiento */ }
+    });
+
+    $('avail-reset').addEventListener('click', () => {
+      result.hidden = true;
+      form.hidden = false;
+      dateInput.focus();
+    });
+
+    // Si ya revisó su fecha en esta visita, no se le vuelve a pedir
+    try {
+      const saved = JSON.parse(sessionStorage.getItem(KEY));
+      if (saved && saved.value >= dateInput.min) {
+        dateInput.value = saved.value;
+        cityInput.value = saved.city;
+        showResult(saved.value, saved.city);
+        unlock(false);
+      }
+    } catch { /* sin almacenamiento */ }
+  }
 });

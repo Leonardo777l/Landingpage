@@ -29,7 +29,7 @@
                 <li><a href="#about">Leo</a></li>
             </ul>
         </nav>
-        <a href="https://wa.link/tmjnft" target="_blank" rel="noopener" class="btn btn-line nav-cta">Consultar fecha</a>
+        <a href="#packages" class="btn btn-line nav-cta">Revisar mi fecha</a>
     </header>
 
     <main id="top">
@@ -47,8 +47,7 @@
                 <p class="hero-lead">Foto y video de bodas, hechos con calma y con cariño, para que puedas volver
                     a ese día cuando quieras.</p>
                 <div class="hero-actions">
-                    <a href="https://wa.link/tmjnft" target="_blank" rel="noopener" class="btn btn-solid">Consultar mi
-                        fecha</a>
+                    <a href="#packages" class="btn btn-solid">Revisar mi fecha</a>
                     <a href="#films" class="btn btn-text">Ver películas</a>
                 </div>
             </div>
@@ -269,10 +268,52 @@
             <div class="wrap">
                 <div class="section-head">
                     <h2>Colecciones</h2>
-                    <p>Armé tres colecciones para que elijan la que más se parezca a lo que imaginan. Todas llevan
-                        foto, video y sesión Save the date.</p>
+                    <p>Antes de enseñarte las colecciones, déjame revisar si tengo libre tu fecha.</p>
                 </div>
 
+                <div class="avail">
+                    <div class="avail-inner">
+                        <form class="avail-form" id="avail-form" novalidate>
+                            <div class="field">
+                                <label for="avail-date">¿Qué día te casas?</label>
+                                <input type="date" id="avail-date" name="fecha" required>
+                            </div>
+                            <div class="field">
+                                <label for="avail-city">¿En qué ciudad?</label>
+                                <select id="avail-city" name="ciudad" required>
+                                    <option value="" disabled selected>Elige una ciudad</option>
+                                    <option>Morelia</option>
+                                    <option>Guadalajara</option>
+                                    <option>Uruapan</option>
+                                    <option>Cancún</option>
+                                    <option>Ixtapa</option>
+                                    <option value="otra">Otra ciudad</option>
+                                </select>
+                            </div>
+                            <p class="avail-error" id="avail-error" role="alert" hidden></p>
+                            <button type="submit" class="btn btn-solid">Revisar mi fecha</button>
+                        </form>
+
+                        <div class="avail-status" id="avail-status" aria-live="polite" hidden>
+                            <p class="avail-line" id="avail-line"></p>
+                            <div class="avail-bar"><span id="avail-bar"></span></div>
+                            <ul class="avail-log" id="avail-log"></ul>
+                        </div>
+
+                        <div class="avail-result" id="avail-result" hidden>
+                            <p class="avail-kicker" id="avail-kicker"></p>
+                            <h3 id="avail-title" tabindex="-1"></h3>
+                            <p id="avail-text"></p>
+                            <div class="avail-actions">
+                                <a href="https://wa.link/tmjnft" target="_blank" rel="noopener" class="btn btn-solid"
+                                    id="avail-wa">Apartar mi fecha por WhatsApp</a>
+                                <button type="button" class="avail-reset" id="avail-reset">Revisar otra fecha</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="prices" id="prices">
                 <div class="cards">
                     <!-- Esencial -->
                     <article class="card card-esencial">
@@ -293,7 +334,7 @@
                             </ul>
 
                             <a href="https://wa.link/tmjnft" target="_blank" rel="noopener"
-                                class="btn btn-outline">Consultar mi fecha</a>
+                                class="btn btn-outline">Apartar mi fecha</a>
                         </div>
                     </article>
 
@@ -317,7 +358,7 @@
                             <p class="card-diff">Solo $3,000 más que Esencial.</p>
 
                             <a href="https://wa.link/tmjnft" target="_blank" rel="noopener"
-                                class="btn btn-solid">Consultar mi fecha</a>
+                                class="btn btn-solid">Apartar mi fecha</a>
                         </div>
                     </article>
 
@@ -339,7 +380,7 @@
                             </ul>
 
                             <a href="https://wa.link/tmjnft" target="_blank" rel="noopener"
-                                class="btn btn-outline">Consultar mi fecha</a>
+                                class="btn btn-outline">Apartar mi fecha</a>
                         </div>
                     </article>
                 </div>
@@ -366,13 +407,6 @@
                         </tbody>
                     </table>
                 </details>
-
-                <div class="scarcity">
-                    <p class="scarcity-title">Una fecha, una sola boda.</p>
-                    <p>Me gusta estar presente de principio a fin, así que solo tomo una boda por día. Si ya
-                        tienen fecha, escríbanme con tiempo: los sábados son los primeros que se apartan.</p>
-                    <a href="https://wa.link/tmjnft" target="_blank" rel="noopener" class="link-under">Pregúntame si tu
-                        fecha sigue libre</a>
                 </div>
             </div>
         </section>
@@ -449,7 +483,7 @@
     <!-- Barra fija -->
     <div id="sticky-bar" class="sticky-bar" hidden>
         <p><strong>Agenda 2027 abierta.</strong> <span class="bar-more">Una sola boda por fecha.</span></p>
-        <a href="https://wa.link/tmjnft" target="_blank" rel="noopener" class="btn btn-solid">Consultar mi fecha</a>
+        <a href="https://wa.link/tmjnft" target="_blank" rel="noopener" class="btn btn-solid">Apartar mi fecha</a>
         <button id="close-bar" class="close-bar" aria-label="Cerrar aviso">&times;</button>
     </div>
 

@@ -900,22 +900,181 @@ h2 {
     font-weight: 600;
 }
 
-.scarcity {
-    max-width: 40rem;
-    margin: clamp(3rem, 7vw, 5.5rem) auto 0;
+/* Revisor de disponibilidad */
+[hidden] {
+    display: none !important;
+}
+
+.avail {
+    max-width: 46rem;
+    margin: 0 auto;
+    padding: 0.6rem;
+    background: var(--papel);
+    border-radius: var(--radius);
+    box-shadow: 0 1px 0 rgba(27, 29, 22, 0.06), 0 24px 48px -28px rgba(27, 29, 22, 0.35);
+}
+
+.avail-inner {
+    display: grid;
+    align-content: center;
+    min-height: 17rem;
+    padding: clamp(1.75rem, 4vw, 3rem);
+    border: 1px solid var(--linea-oscura);
+    border-radius: var(--radius-sm);
+}
+
+.avail-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem 1rem;
+}
+
+.field label {
+    display: block;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.1875rem;
+    margin-bottom: 0.55rem;
+}
+
+.field input,
+.field select {
+    width: 100%;
+    min-height: 3.4rem;
+    padding: 0.85rem 1rem;
+    font: inherit;
+    color: var(--tinta);
+    background: #fff;
+    border: 1px solid var(--linea-oscura);
+    border-radius: 12px;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.field select {
+    padding-right: 2.75rem;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%231B1D16' stroke-width='1.6'%3E%3Cpath d='M5 9l7 7 7-7'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+}
+
+.field input:focus-visible,
+.field select:focus-visible {
+    outline: 2px solid var(--laton);
+    outline-offset: 2px;
+}
+
+.avail-form .btn,
+.avail-error {
+    grid-column: 1 / -1;
+}
+
+.avail-error {
+    font-size: 0.9375rem;
+    color: #8A3B2B;
+}
+
+.avail-status,
+.avail-result {
     text-align: center;
 }
 
-.scarcity-title {
+.avail-line {
     font-family: var(--serif);
-    font-size: clamp(1.75rem, 3vw, 2.4rem);
-    line-height: 1.1;
-    margin-bottom: 1rem;
+    font-size: clamp(1.4rem, 2.6vw, 1.9rem);
+    line-height: 1.2;
 }
 
-.scarcity p:not(.scarcity-title) {
+.avail-bar {
+    max-width: 18rem;
+    height: 2px;
+    margin: 1.6rem auto;
+    background: var(--linea-oscura);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.avail-bar span {
+    display: block;
+    width: 0;
+    height: 100%;
+    background: var(--laton);
+    transition: width linear;
+}
+
+.avail-log {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 2.3rem;
+}
+
+.avail-log li {
+    padding: 0.35rem 0.85rem;
+    font-size: 0.875rem;
     color: var(--tinta-suave);
-    margin-bottom: 1.5rem;
+    border: 1px solid var(--linea-oscura);
+    border-radius: 999px;
+    animation: rise 0.5s var(--ease) both;
+}
+
+.avail-kicker {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.1875rem;
+    color: var(--laton);
+}
+
+.avail-result h3 {
+    margin: 0.6rem 0 1rem;
+    font-size: clamp(1.7rem, 3.4vw, 2.6rem);
+    text-wrap: balance;
+}
+
+.avail-result h3:focus {
+    outline: none;
+}
+
+.avail-result > p:not(.avail-kicker) {
+    max-width: 32rem;
+    margin: 0 auto 1.75rem;
+    color: var(--tinta-suave);
+}
+
+.avail-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem 1.75rem;
+}
+
+.avail-reset {
+    padding: 0 0 0.15rem;
+    font: inherit;
+    font-weight: 500;
+    color: inherit;
+    background: none;
+    border: 0;
+    border-bottom: 1px solid currentColor;
+    cursor: pointer;
+}
+
+.avail-reset:hover {
+    color: var(--laton);
+}
+
+.prices {
+    margin-top: clamp(2.5rem, 6vw, 4.5rem);
+}
+
+.prices.is-locked {
+    display: none;
+}
+
+.prices.is-revealed {
+    animation: rise 1s var(--ease) both;
 }
 
 /* Proceso */
@@ -1153,6 +1312,10 @@ h2 {
 
     .carousel-nav {
         display: none;
+    }
+
+    .avail-form {
+        grid-template-columns: 1fr;
     }
 
     .track img {
