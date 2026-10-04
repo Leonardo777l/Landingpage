@@ -454,6 +454,53 @@ h2 {
     padding-left: 1rem;
 }
 
+/* Lo que busco en cada boda */
+.moments {
+    background: var(--olivo);
+    color: var(--hueso);
+    padding: var(--space-section) 0;
+}
+
+.moments-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    gap: clamp(2.5rem, 7vw, 7rem);
+    align-items: start;
+}
+
+.moments-head {
+    position: sticky;
+    top: 7rem;
+}
+
+.moments-head p {
+    margin-top: 1.5rem;
+    max-width: 26rem;
+    font-size: 1.125rem;
+    color: var(--niebla);
+}
+
+.moments-list li {
+    padding: clamp(1.6rem, 3vw, 2.4rem) 0;
+    border-top: 1px solid rgba(181, 146, 83, 0.45);
+}
+
+.moments-list li:last-child {
+    border-bottom: 1px solid rgba(181, 146, 83, 0.45);
+}
+
+.moments-list h3 {
+    font-style: italic;
+    font-size: clamp(1.9rem, 3.4vw, 2.9rem);
+    color: var(--laton-claro);
+    margin-bottom: 0.7rem;
+}
+
+.moments-list p {
+    max-width: 31rem;
+    color: rgba(236, 230, 216, 0.84);
+}
+
 /* Galería */
 .gallery {
     background: var(--papel);
@@ -1076,8 +1123,13 @@ h2 {
         grid-column: span 12;
     }
 
-    .about-grid {
+    .about-grid,
+    .moments-grid {
         grid-template-columns: 1fr;
+    }
+
+    .moments-head {
+        position: static;
     }
 
     .about-photo {
