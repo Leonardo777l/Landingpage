@@ -183,7 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
         : `El ${fmt(date, true)} ya lo tengo apartado.`;
       $('avail-text').textContent = libre
         ? `Todavía no tengo boda ese día${donde}. Aquí abajo están las colecciones; cuando quieras, escríbeme y lo apartamos.`
-        : 'Ese día ya voy a estar en otra boda. Si tienen otra fecha en mente, revísenla aquí, o escríbeme y vemos qué se puede hacer.';
+        : 'Ese día ya lo tenemos comprometido con otra boda. Si tienen otra fecha en mente, revísenla aquí, o escríbeme y vemos qué se puede hacer.';
       $('avail-wa').textContent = libre ? 'Apartar mi fecha por WhatsApp' : 'Escribirme por WhatsApp';
       updateLinks(value, city);
       form.hidden = true;
