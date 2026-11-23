@@ -1,9 +1,8 @@
 // Fechas que Leo ya tiene apartadas, en formato AAAA-MM-DD.
 // El revisor de disponibilidad de la página compara contra esta lista,
 // así que debe mantenerse al día. Salen de los eventos "BODA" de su Google Calendar.
-// Última actualización: 16 de noviembre de 2026.
+// Última actualización: 23 de noviembre de 2026.
 export const FECHAS_OCUPADAS = [
-  '2026-11-20',
   '2026-11-28',
   '2026-12-05',
   '2026-12-26',
